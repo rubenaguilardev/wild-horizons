@@ -1,6 +1,6 @@
-const responseUtil = ((res, statusCode, header, payload) => {
+const responseUtil = ((res, statusCode, payload) => {
   res.statusCode = statusCode
-  res.setHeader('Content-Type', header)
+  res.setHeader('Content-Type', 'application/json')
   res.end(JSON.stringify(payload))
 })
 
