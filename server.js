@@ -1,11 +1,16 @@
 import http from 'node:http'
+import { getDataFromDB } from './database/db.js'
 
 const PORT = 8000
 
-const server = http.createServer((req, res) => {
+const server = http.createServer(async (req, res) => {
+
+  const destinations = await getDataFromDB()
 
   if (req.url === '/api' && req.method === 'GET') {
-    res.end('This is from the server')
+    res.statusCode = 200
+    res.setHeader('Content-Type', 'application/json')
+    res.end(JSON.stringify(destinations))
   }
   
 })
